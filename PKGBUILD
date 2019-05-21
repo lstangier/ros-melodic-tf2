@@ -51,6 +51,9 @@ build() {
 	# Fix Python2/Python3 conflicts.
 	/usr/share/ros-build-tools/fix-python-scripts.sh -v 3 ${srcdir}/${_dir}
 
+	# Delete signals as a required component from the CMakeLists.txt
+	sed -i 's/REQUIRED COMPONENTS signals/REQUIRED COMPONENTS/g' ${srcdir}/${_dir}/CMakeLists.txt
+
 	# Build the project.
 	cmake ${srcdir}/${_dir} \
 		-DCMAKE_BUILD_TYPE=Release \
